@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Buy Page</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+    }
+    .header {
+      background-color: #232f3e;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      color: white;
+    }
+    .header img {
+      height: 30px;
+      margin-right: 20px;
+      height: 50px;
+    }
+    .header input[type="text"] {
+      width: 300px;
+      padding: 5px;
+      margin-right: 10px;
+    }
+    .header button {
+      padding: 5px 10px;
+      background-color: #febd69;
+      border: none;
+      cursor: pointer;
+    }
+    .header .nav-links {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+    }
+    .header .nav-links a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+    .header .nav-links .cart {
+      display: flex;
+      align-items: center;
+    }
+    .header .nav-links .cart i {
+      margin-right: 5px;
+    }
+    .main {
+      padding: 20px;
+    }
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .results-header h2 {
+      margin: 0;
+    }
+    .sidebar {
+      width: 200px;
+      float: left;
+    }
+    .sidebar h3 {
+      font-size: 16px;
+      margin-top: 0;
+    }
+    .sidebar label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .sidebar input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .sidebar .category, .sidebar .customer-review, .sidebar .brands, .sidebar .price {
+      margin-bottom: 20px;
+    }
+    .products {
+      margin-left: 220px;
+      display: flex; /* Use flexbox for product display */
+      flex-wrap: wrap; /* Wrap products onto multiple lines */
+      justify-content: flex-start; /* Align products to the left */
+    }
+    .product {
+      width: 200px; /* Set a fixed width for each product */
+      margin-right: 20px;
+      margin-bottom: 20px;
+      vertical-align: top;
+      text-align: center; /* Center content within each product */
+    }
+    .product img {
+      width: 100%; /* Image should occupy full width */
+      height: auto; /* Auto-adjust height to maintain aspect ratio */
+    }
+    .product h4 {
+      font-size: 14px;
+      margin: 10px 0;
+    }
+    .product .rating {
+      color: #ffa41c;
+    }
+    .product .price {
+      font-size: 16px;
+      color: #b12704;
+    }
+    /* ... other CSS ... */
+
+/* Hover effect for product buttons */
+.product .buttons button {
+  /* ... other styles ... */
+  transition: background-color 0.3s ease; /* Add transition for smooth hover effect */
+}
+
+.product .buttons button:hover {
+  opacity: 0.8; /* Make the button slightly darker on hover */
+}
+
+/* ... other CSS ... */
+
+    /* Price Filter Styling */
+    .price {
+      margin-bottom: 20px;
+    }
+    .price input[type="range"] {
+      width: 100%;
+    }
+    .price .range-values {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+
+    /* Hide/Show Sidebar Filters */
+    .sidebar .hidden {
+      display: none; /* Initially hide */
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img alt="StudySwap logo" height="30" src="logo.png" width="100"/>
+    <input placeholder="Search" type="text" id="search-input">
+    <button id="search-button"><i class="fas fa-search"></i></button>
+    <div class="nav-links">
+      <a href="dasshboard2.html" id="back-link">Back</a>
+      <a href="#" id="all-link">All</a>
+      <a href="#" id="books-link">Books</a>
+      <a href="#" id="calculators-link">Calculators</a>
+      <a href="#" id="stationary-link">Stationary</a>
+      <a href="#" id="lab-equipment-link">Lab Equipment</a>
+      <div class="cart">
+        <i class="fas fa-shopping-cart"></i>
+        <a href="cart.html">Cart</a>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="results-header">
+      <h2 id="results-count"></h2>
+      <div>
+        <label for="sort">Sort by:</label>
+        <select id="sort">
+          <option value="featured">Featured</option>
+        </select>
+      </div>
+    </div>
+    <div class="sidebar">
+      <div class="delivery-day">
+        <h3>Delivery Day</h3>
+        <label>
+          <input type="checkbox" id="delivery-tomorrow">
+          Get It by Tomorrow
+        </label>
+        <label>
+          <input type="checkbox" id="delivery-two-days">
+          Get It in 2 Days
+        </label>
+      </div>
+      <div class="category">
+        <h3>Category</h3>
+        <label>
+          <input type="checkbox" id="category-pens">
+          Pens & Refills
+        </label>
+        <label>
+          <input type="checkbox" id="category-ballpoint">
+          Stick Ballpoint Pens
+        </label>
+        <label>
+          <input type="checkbox" id="category-gel">
+          Gel Ink Rollerball Pens
+        </label>
+        <label>
+          <input type="checkbox" id="category-liquid">
+          Liquid Ink Rollerball Pens
+        </label>
+        <label>
+          <input type="checkbox" id="category-fountain">
+          Fountain Pens
+        </label>
+        <label>
+          <input type="checkbox" id="category-retractable">
+          Retractable Ballpoint Pens
+        </label>
+        <label>
+          <input type="checkbox" id="category-rollerball">
+          Rollerball Pens
+        </label>
+        <label>
+          <input type="checkbox" id="category-refills">
+          Pen Refills
+        </label>
+      </div>
+      <div class="customer-review">
+        <h3>Customer Review</h3>
+        <label>
+          <input type="checkbox" id="review-five-stars">
+          <span class="rating">★★★★★</span>
+        </label>
+        <label>
+          <input type="checkbox" id="review-four-stars">
+          <span class="rating">★★★★☆</span> & Up
+        </label>
+        <label>
+          <input type="checkbox" id="review-three-stars">
+          <span class="rating">★★★☆☆</span> & Up
+        </label>
+        <label>
+          <input type="checkbox" id="review-two-stars">
+          <span class="rating">★★☆☆☆</span> & Up
+        </label>
+        <label>
+          <input type="checkbox" id="review-one-star">
+          <span class="rating">★☆☆☆☆</span> & Up
+        </label>
+      </div>
+      <div class="brands">
+        <h3>Brands</h3>
+        <label>
+          <input type="checkbox" id="brand-reynolds">
+          Reynolds
+        </label>
+        <label>
+          <input type="checkbox" id="brand-cello">
+          Cello
+        </label>
+        <label>
+          <input type="checkbox" id="brand-parker">
+          Parker
+        </label>
+        <label>
+          <input type="checkbox" id="brand-pentonic">
+          Pentonic
+        </label>
+        <label>
+          <input type="checkbox" id="brand-hauser">
+          Hauser Germany
+        </label>
+        <label>
+          <input type="checkbox" id="brand-classmate">
+          Classmate
+        </label>
+        <label>
+          <input type="checkbox" id="brand-flair">
+          FLAIR
+        </label>
+      </div>
+      <div class="price">
+        <h3>Price</h3>
+        <input type="range" min="30" max="73700" value="30" id="price-range">
+        <div class="range-values">
+          <span id="min-price-value">₹30</span>
+          <span id="max-price-value">₹73,700+</span>
+        </div>
+      </div>
+      <div class="category hidden" id="books-category">
+        <h3>Book Categories</h3>
+        <label>
+          <input type="checkbox" id="category-fiction">
+          Fiction
+        </label>
+        <label>
+          <input type="checkbox" id="category-nonfiction">
+          Non-fiction
+        </label>
+        <label>
+          <input type="checkbox" id="category-textbook">
+          Textbooks
+        </label>
+        </div>
+      <div class="brands hidden" id="books-brands">
+        <h3>Book Brands</h3>
+        <label>
+          <input type="checkbox" id="brand-mcgrawhill">
+          McGraw Hill
+        </label>
+        <label>
+          <input type="checkbox" id="brand-harpercollins">
+          HarperCollins
+        </label>
+      </div>
+      <div class="category hidden" id="calculators-category">
+        <h3>Calculator Categories</h3>
+        <label>
+          <input type="checkbox" id="category-scientific">
+          Scientific
+        </label>
+        <label>
+          <input type="checkbox" id="category-graphing">
+          Graphing
+        </label>
+      </div>
+      <div class="brands hidden" id="calculators-brands">
+        <h3>Calculator Brands</h3>
+        <label>
+          <input type="checkbox" id="brand-casio">
+          Casio
+        </label>
+        <label>
+          <input type="checkbox" id="brand-ti">
+          Texas Instruments
+        </label>
+      </div>
+      <div class="category hidden" id="stationary-category">
+        <h3>Stationary Categories</h3>
+        <label>
+          <input type="checkbox" id="category-pens">
+          Pens
+        </label>
+        <label>
+          <input type="checkbox" id="category-notebooks">
+          Notebooks
+        </label>
+        <label>
+          <input type="checkbox" id="category-paper">
+          Paper
+        </label>
+      </div>
+      <div class="brands hidden" id="stationary-brands">
+        <h3>Stationary Brands</h3>
+        <label>
+          <input type="checkbox" id="brand-cello">
+          Cello
+        </label>
+        <label>
+          <input type="checkbox" id="brand-classmate">
+          Classmate
+        </label>
+      </div>
+      <div class="category hidden" id="lab-equipment-category">
+        <h3>Lab Equipment Categories</h3>
+        <label>
+          <input type="checkbox" id="category-microscopes">
+          Microscopes
+        </label>
+        <label>
+          <input type="checkbox" id="category-beakers">
+          Beakers
+        </label>
+        <label>
+          <input type="checkbox" id="category-testtubes">
+          Test Tubes
+        </label>
+      </div>
+      <div class="brands hidden" id="lab-equipment-brands">
+        <h3>Lab Equipment Brands</h3>
+        <label>
+          <input type="checkbox" id="brand-olympus">
+          Olympus
+        </label>
+        <label>
+          <input type="checkbox" id="brand-pyrex">
+          Pyrex
+        </label>
+      </div>
+    </div>
+    <div class="products" id="products-container">
+      </div>
+  </div>
+  <script>
+    let cart = []; // Empty array to store cart items
+    // Sample Product Data (Replace with actual data)
+    const products = [
+      {
+        id: 1,
+        name: "Reynolds AEROSLIM Ball Pen Set - 50 Blue Pens with Comfortable Grip",
+        category: "pens",
+        price: 300,
+        imageUrl: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-2NTNOs2nvdpsr9tjcQZqzFGr.png?st=2024-09-22T16%3A19%3A09Z&se=2024-09-22T18%3A19%3A09Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-09-21T23%3A50%3A34Z&ske=2024-09-22T23%3A50%3A34Z&sks=b&skv=2024-08-04&sig=wxH0HjbA3NjiIIk/FlDKR5ZJqP8ZSNXc9cZ4uw7eDmQ%3D",
+        rating: 4,
+        brand: "Reynolds"
+      },
+      {
+        id: 2,
+        name: "Reynolds DFINE Ball Pen Set - 50 Blue Pens with Comfortable Grip",
+        category: "pens",
+        price: 350,
+        imageUrl: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-7FtsPNfgXp10gj7c6oh4wb5C.png?st=2024-09-22T16%3A19%3A14Z&se=2024-09-22T18%3A19%3A14Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-09-21T23%3A16%3A59Z&ske=2024-09-22T23%3A16%3A59Z&sks=b&skv=2024-08-04&sig=mN46TVxKubKpPn5Zl8n2pNAhL4HZMNHzeaap9eNmU3A%3D",
+        rating: 4,
+        brand: "Reynolds"
+      },
+      {
+        id: 3,
+        name: "Reynolds CHAMP Ball Pen Set - 30 Blue Pens with Comfortable Grip",
+        category: "pens",
+        price: 200,
+        imageUrl: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-POf3GDI7MKEM1AIlX41jjppK.png?st=2024-09-22T16%3A19%3A11Z&se=2024-09-22T18%3A19%3A11Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-09-21T23%3A45%3A41Z&ske=2024-09-22T23%3A45%3A41Z&sks=b&skv=2024-08-04&sig=lg%2B3C7%2BgNY9dv/G5y%2BGSCbI8peM%2B7WOelsrjRfkallA%3D",
+        rating: 3,
+        brand: "Reynolds"
+      },
+      {
+        id: 4,
+        name: "Reynolds Jetter Classic 10 Ct Pouch",
+        category: "pens",
+        price: 150,
+        imageUrl: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-3ptNxLbrf2Z1H8JhBbujwPWS.png?st=2024-09-22T16%3A19%3A11Z&se=2024-09-22T18%3A19%3A11Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-09-21T23%3A26%3A52Z&ske=2024-09-22T23%3A26%3A52Z&sks=b&skv=2024-08-04&sig=96ZDXpfWDyBKLUCkeux2/ajN4q6NU0HD%2BkBWA5mP0vs%3D",
+        rating: 3,
+        brand: "Reynolds"
+      },
+      {
+        id: 5,
+        name: "Hauser XO 0.7mm Ball Pen Box Pack",
+        category: "pens",
+        price: 100,
+        imageUrl: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-Ou7V20dzcbrxsgh68qTkWcdn.png?st=2024-09-22T16%3A19%3A14Z&se=2024-09-22T18%3A19%3A14Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-09-21T23%3A22%3A51Z&ske=2024-09-22T23%3A22%3A51Z&sks=b&skv=2024-08-04&sig=kgTN4VXMZ9lM3lAa4EZKdduPwm6m58eXmdyGD1i8FH8%3D",
+        rating: 4,
+        brand: "Hauser"
+      },
+      // Books
+      {
+        id: 6,
+        name: "Introduction to Calculus",
+        category: "books",
+        price: 45,
+        imageUrl: "calculus_book.jpg",
+        rating: 4.5,
+        brand: "McGraw Hill"
+      },
+      {
+        id: 7,
+        name: "The Lord of the Rings",
+        category: "books",
+        price: 15,
+        imageUrl: "the_lord_of_the_rings.jpg",
+        rating: 4.8,
+        brand: "HarperCollins"
+      },
+      // Calculators
+      {
+        id: 8,
+        name: "Casio fx-991ES Plus Scientific Calculator",
+        category: "calculators",
+        price: 1295,
+        imageUrl: "calculator1.jpg",
+        rating: 4.2,
+        brand: "Casio"
+      },
+      {
+        id: 9,
+        name: "Texas Instruments TI-84 Plus CE Graphing Calculator",
+        category: "calculators",
+        price: 1045,
+        imageUrl: "calculator2.avif",
+        rating: 4.7,
+        brand: "Texas Instruments"
+      },
+      // Stationary
+      {
+        id: 10,
+        name: "A4 paper set",
+        category: "stationary",
+        price: 300,
+        imageUrl: "A4 paper.webp",
+        rating: 4,
+        brand: "JK"
+      },
+      {
+        id: 11,
+        name: "Classmate Notebook A4",
+        category: "stationary",
+        price: 120,
+        imageUrl: "notebook1.webp",
+        rating: 4.3,
+        brand: "Classmate"
+      },
+      // Lab Equipment
+      {
+        id: 12,
+        name: "Arduino Rev3",
+        category: "lab_equipment",
+        price: 1000,
+        imageUrl: "arduino1.webp",
+        rating: 4.5,
+        brand: "Olympus"
+      },
+      {
+        id: 13,
+        name: "The Basic Starter kit for Compatible with Arduino UNO",
+        category: "lab_equipment",
+        price: 1200,
+        imageUrl: "starter kit.jpg",
+        rating: 4,
+        brand: "Pyrex"
+      }
+    ];
+
+    const productsContainer = document.getElementById('products-container');
+    const searchInput = document.getElementById('search-input');
+    const sortSelect = document.getElementById('sort');
+    const deliveryTomorrowCheckbox = document.getElementById('delivery-tomorrow');
+    const deliveryTwoDaysCheckbox = document.getElementById('delivery-two-days');
+    const categoryPensCheckbox = document.getElementById('category-pens');
+    const categoryBallpointCheckbox = document.getElementById('category-ballpoint');
+    const categoryGelCheckbox = document.getElementById('category-gel');
+    const categoryLiquidCheckbox = document.getElementById('category-liquid');
+    const categoryFountainCheckbox = document.getElementById('category-fountain');
+    const categoryRetractableCheckbox = document.getElementById('category-retractable');
+    const categoryRollerballCheckbox = document.getElementById('category-rollerball');
+    const categoryRefillsCheckbox = document.getElementById('category-refills');
+    const reviewFiveStarsCheckbox = document.getElementById('review-five-stars');
+    const reviewFourStarsCheckbox = document.getElementById('review-four-stars');
+    const reviewThreeStarsCheckbox = document.getElementById('review-three-stars');
+    const reviewTwoStarsCheckbox = document.getElementById('review-two-stars');
+    const reviewOneStarCheckbox = document.getElementById('review-one-star');
+    const brandReynoldsCheckbox = document.getElementById('brand-reynolds');
+    const brandCelloCheckbox = document.getElementById('brand-cello');
+    const brandParkerCheckbox = document.getElementById('brand-parker');
+    const brandPentonicCheckbox = document.getElementById('brand-pentonic');
+    const brandHauserCheckbox = document.getElementById('brand-hauser');
+    const brandClassmateCheckbox = document.getElementById('brand-classmate');
+    const brandFlairCheckbox = document.getElementById('brand-flair');
+    const resultsCountElement = document.getElementById('results-count'); // Get the h2 element
+    const priceRangeSlider = document.getElementById('price-range');
+    const minPriceValue = document.getElementById('min-price-value');
+    const maxPriceValue = document.getElementById('max-price-value');
+
+    // Function to render products
+    function renderProducts(filteredProducts) {
+      productsContainer.innerHTML = ''; // Clear previous products
+
+      filteredProducts.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.classList.add('product');
+
+        productDiv.innerHTML = `
+          <img src="${product.imageUrl}" alt="${product.name}">
+          <h4>${product.name}</h4>
+          <p class="rating">★★★★☆ ${product.rating}</p>
+          <p class="price">₹${product.price}</p>
+          <div class="buttons"> 
+           <button class="add-to-cart" data-product-id="${product.id}">Add to Cart</button>
+            <button class="buy-now">Buy Now</button>
+            </div>
+        `;
+
+        // Add event listener for "Add to Cart" button
+productDiv.querySelectorAll('.add-to-cart').forEach(button => {
+  button.addEventListener('click', () => {
+    addToCart(product);
+  });
+});
+
+productDiv.addEventListener('click', () => {
+  showProductDetails(product);
+});
+
+        productsContainer.appendChild(productDiv);
+      });
+
+       // Update the results count dynamically
+       resultsCountElement.textContent = `1-48 of over ${filteredProducts.length} results for "${searchInput.value}"`;
+    }
+
+      function addToCart(product) {
+  let existingProduct = cart.find(item => item.id === product.id);
+  if (existingProduct) {
+    existingProduct.quantity++;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+
+  // Store cart in local storage
+  localStorage.setItem('cart', JSON.stringify(cart));
+  
+  renderProducts(products); // Re-render products after adding to cart
+ 
+}
+
+     
+
+    // Initial product rendering
+    renderProducts(products);
+
+    // Search functionality
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.toLowerCase();
+      const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm)
+      );
+      renderProducts(filteredProducts);
+    });
+
+    // Sorting functionality (not fully implemented)
+    sortSelect.addEventListener('change', () => {
+      // Implement sorting logic here based on selected value
+      // ...
+    });
+
+    // Filtering functionality
+    function filterProducts() {
+      let filteredProducts = products;
+
+      // Delivery filter
+      if (deliveryTomorrowCheckbox.checked) {
+        filteredProducts = filteredProducts.filter(product => product.delivery === 'tomorrow');
+      }
+      if (deliveryTwoDaysCheckbox.checked) {
+        filteredProducts = filteredProducts.filter(product => product.delivery === 'two-days');
+      }
+
+      // Category filter
+      if (categoryPensCheckbox.checked) {
+        filteredProducts = filteredProducts.filter(product => product.category === 'pens');
+      }
+      if (categoryBallpointCheckbox.checked) {
+        filteredProducts = filteredProducts.filter(product => product.category === 'ballpoint');
+      }
+      // ... (apply filters for other categories)
+
+      // Customer review filter
+      if (reviewFiveStarsCheckbox.checked) {
+        filteredProducts = filteredProducts.filter(product => product.rating === 5);
+      }
+      if (reviewFourStarsCheckbox.checked) {
+        filteredProducts = filteredProducts.filter(product => product.rating >= 4);
+      }
+      if (reviewThreeStarsCheckbox.checked) {
+        filteredProducts = filteredProducts.filter(product => product.rating >= 3);
+      }
+      if (reviewTwoStarsCheckbox.checked) {
+        filteredProducts = filteredProducts.filter(product => product.rating >= 2);
+      }
+      if (reviewOneStarCheckbox.checked) {
+        filteredProducts = filteredProducts.filter(product => product.rating >= 1);
+      }
+
+      // Brand filter
+      if (brandReynoldsCheckbox.checked) {
+        filteredProducts = filteredProducts.filter(product => product.brand === 'Reynolds');
+      }
+      // ... (apply filters for other brands)
+
+      // Price filter
+      const minPrice = parseInt(priceRangeSlider.value); // Get the current slider value
+      const maxPrice = parseInt(priceRangeSlider.max);
+      filteredProducts = filteredProducts.filter(product => product.price >= minPrice && product.price <= maxPrice);
+
+      renderProducts(filteredProducts);
+    }
+
+    // Add event listeners for filter checkboxes
+    deliveryTomorrowCheckbox.addEventListener('change', filterProducts);
+    deliveryTwoDaysCheckbox.addEventListener('change', filterProducts);
+    categoryPensCheckbox.addEventListener('change', filterProducts);
+    categoryBallpointCheckbox.addEventListener('change', filterProducts);
+    // ... (add event listeners for other checkboxes)
+    reviewFiveStarsCheckbox.addEventListener('change', filterProducts);
+    reviewFourStarsCheckbox.addEventListener('change', filterProducts);
+    reviewThreeStarsCheckbox.addEventListener('change', filterProducts);
+    reviewTwoStarsCheckbox.addEventListener('change', filterProducts);
+    reviewOneStarCheckbox.addEventListener('change', filterProducts);
+    brandReynoldsCheckbox.addEventListener('change', filterProducts);
+    // ... (add event listeners for other brands)
+
+    // Price Range Slider Event Listener
+    priceRangeSlider.addEventListener('input', () => {
+      const minPrice = parseInt(priceRangeSlider.value);
+      const maxPrice = parseInt(priceRangeSlider.max);
+      minPriceValue.textContent = `₹${minPrice}`;
+      maxPriceValue.textContent = `₹${maxPrice}+`;
+      filterProducts(); // Apply price filter when slider changes
+    });
+
+    // Navigation Click Events
+    const allLink = document.getElementById('all-link');
+    const booksLink = document.getElementById('books-link');
+    const calculatorsLink = document.getElementById('calculators-link');
+    const stationaryLink = document.getElementById('stationary-link');
+    const labEquipmentLink = document.getElementById('lab-equipment-link');
+    const booksCategory = document.getElementById('books-category');
+    const booksBrands = document.getElementById('books-brands');
+    const calculatorsCategory = document.getElementById('calculators-category');
+    const calculatorsBrands = document.getElementById('calculators-brands');
+    const stationaryCategory = document.getElementById('stationary-category');
+    const stationaryBrands = document.getElementById('stationary-brands');
+    const labEquipmentCategory = document.getElementById('lab-equipment-category');
+    const labEquipmentBrands = document.getElementById('lab-equipment-brands');
+
+    function showCategoryFilters(category, brands) {
+      booksCategory.classList.add('hidden'); // Hide all category filters
+      booksBrands.classList.add('hidden'); 
+      calculatorsCategory.classList.add('hidden');
+      calculatorsBrands.classList.add('hidden');
+      stationaryCategory.classList.add('hidden');
+      stationaryBrands.classList.add('hidden');
+      labEquipmentCategory.classList.add('hidden');
+      labEquipmentBrands.classList.add('hidden');
+
+      if (category) {
+        category.classList.remove('hidden');
+      }
+
+      if (brands) {
+        brands.classList.remove('hidden');
+      }
+    }
+
+    allLink.addEventListener('click', () => {
+      renderProducts(products); // Show all products
+      showCategoryFilters(); // Hide category-specific filters
+    });
+
+    booksLink.addEventListener('click', () => {
+      const filteredBooks = products.filter(product => product.category === 'books');
+      renderProducts(filteredBooks); // Show only books
+      showCategoryFilters(booksCategory, booksBrands); // Show book-specific filters
+    });
+
+    calculatorsLink.addEventListener('click', () => {
+      const filteredCalculators = products.filter(product => product.category === 'calculators');
+      renderProducts(filteredCalculators); // Show only calculators
+      showCategoryFilters(calculatorsCategory, calculatorsBrands); // Show calculator-specific filters
+    });
+
+    stationaryLink.addEventListener('click', () => {
+      const filteredStationary = products.filter(product => product.category === 'stationary');
+      renderProducts(filteredStationary); // Show only stationary
+      showCategoryFilters(stationaryCategory, stationaryBrands); // Show stationary-specific filters
+    });
+
+    labEquipmentLink.addEventListener('click', () => {
+      const filteredLabEquipment = products.filter(product => product.category === 'lab_equipment');
+      renderProducts(filteredLabEquipment); // Show only lab equipment
+      showCategoryFilters(labEquipmentCategory, labEquipmentBrands); // Show lab equipment-specific filters
+    });
+  </script>
+</body>
+</html>

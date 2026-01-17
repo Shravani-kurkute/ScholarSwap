@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Overlay styles */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+/* Form container styles */
+.form-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 30rem;
+    width: 100%;
+}
+
+/* Title styles */
+.form-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* Form styles */
+.sign-up-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Input and select styles */
+.form-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+
+/* Button styles */
+.submit-button {
+    width: 100%;
+    background-color: #2563EB; /* Blue color */
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #1D4ED8; /* Darker blue on hover */
+}
+
+/* Close button styles */
+.close-button {
+    margin-top: 1rem;
+    color: #2563EB; /* Blue color */
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.close-button:hover {
+    text-decoration: none;
+}
+
+    </style>
+
+<body>
+    <div class="overlay" id="signup-overlay">
+        <div class="form-container">
+            <h2 class="form-title">Sign Up</h2>
+            <form class="sign-up-form" id="signup-form">
+                <input type="text" name="fullName" placeholder="Full Name" class="form-input" required />
+                <input type="email" name="email" placeholder="Email" class="form-input" required />
+                <input type="password" name="password" placeholder="Password" class="form-input" required />
+                <input type="text" name="institution" placeholder="Educational Institution" class="form-input" required />
+                <input type="text" name="major" placeholder="Major/Field of Study" class="form-input" required />
+                <input type="tel" name="phone" placeholder="Phone Number" class="form-input" required />
+                <select name="userType" class="form-input" required>
+                    <option value="">Select User Type</option>
+                    <option value="student">Student</option>
+                    <option value="educator">Educator</option>
+                </select>
+                <button type="submit" class="submit-button">Sign Up</button>
+            </form>
+            <button class="close-button" id="close-button">Close</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Collect form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+
+            // Log the data to the console (for demonstration purposes)
+            console.log('Form Submitted:', data);
+
+            // Here you would typically send the data to your server
+            // Example fetch code could go here...
+
+            // Optionally close the modal after submission
+            document.getElementById('signup-overlay').style.display = 'none';
+        });
+
+        document.getElementById('close-button').addEventListener('click', function() {
+            window.location.href = 'FrontPage.html'; // Change to your desired URL
+
+        // Redirect to the dashboard page with form data
+        const queryParams = new URLSearchParams(data).toString();
+        window.location.href = `dashboard.html?${queryParams}`; // Redirect with query parameters
+    });
+
+
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScholarSwap</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: white;
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: #e0f2f1;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar img {
+            height: 60px;
+        }
+
+        .navbar .logo span {
+            font-size: 24px;
+            margin-left: 10px;
+            color: black;
+        }
+
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+        }
+
+        .navbar .right-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .right-links a {
+            margin-left: 20px;
+        }
+
+        .navbar .right-links .contact-btn {
+            background-color: #66bb6a;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: white;
+        }
+
+        /* Header section with slider */
+        .header {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            display: flex; /* Add flexbox to the header */
+            justify-content: center; /* Center content horizontally */
+            align-items: flex-start; /* Align content to the top */
+        }
+
+        .header .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            animation: fade 9s infinite;
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 1;
+            }
+
+            33.33% {
+                opacity: 0;
+            }
+
+            66.66% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .header .slide:nth-child(1) {
+            background-image: url('1.jpg');
+            animation-delay: 0s;
+        }
+
+        .header .slide:nth-child(2) {
+            background-image: url('2.jpg');
+            animation-delay: 3s;
+        }
+
+        .header .slide:nth-child(3) {
+            background-image: url('3.jpg');
+            animation-delay: 6s;
+        }
+
+        .header-content {
+            /* Remove absolute positioning for vertical centering */
+            /* position: absolute;
+            bottom: 20px;
+            left: 20px; */
+            color: white;
+            text-align: center; /* Center the text */
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .header-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .header-content p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .feature {
+            background-color: rgba(80, 203, 240, 0.989);
+            padding: 20px;
+            border-radius: 10px;
+            width: 800px;
+            height: 200px;
+            text-align: left;
+        }
+
+        .feature i {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            
+        }
+
+        .feature p {
+            font-size: 16px;
+        }
+
+        .container {
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #1a1a1a;
+        }
+
+        .button-container {
+            margin-top: 40px;
+        }
+
+        .button {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .testimonial-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            padding: 20px;
+            max-width: 800px;
+            align-items: center;
+            margin: auto;
+        }
+
+        .testimonial-image {
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .testimonial-image img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .testimonial-content {
+            margin-left: 20px;
+        }
+
+        .testimonial-content p {
+            font-size: 18px;
+            color: #333333;
+            margin: 0 0 10px;
+        }
+
+        .testimonial-content .name {
+            font-weight: bold;
+            font-size: 16px;
+            color: #333333;
+        }
+
+        .testimonial-content .position {
+            font-size: 14px;
+            color: #777777;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #000;
+        }
+
+        .footer p {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .footer .links a {
+            color: #b700f9;
+            text-decoration: none;
+        }
+
+        .footer .links a:hover {
+            color: #8400ff; /* Green on hover */
+        }
+
+        .footer .social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .footer .social a {
+            color: #bd00fce5;
+            text-decoration: none;
+        }
+
+        .footer .social a:hover {
+            color: #aa00ff; /* Green on hover */
+        }
+
+        .container2 {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .container2 h1 {
+            margin-bottom: 10px;
+        }
+
+        .container2 p {
+            margin-bottom: 30px;
+        }
+
+        .info-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .info-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #5c5c5c;
+            padding: 15px;
+            border-radius: 5px;
+            color: #ffffff;
+        }
+
+        /* Overlay styles for Sign In modal */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            display: none; /* Hidden by default */
+            justify-content: center; /* Center modal horizontally */
+            align-items: center; /* Center modal vertically */
+            z-index: 1000; /* Ensure it's above other elements */
+        }
+
+        /* Form container styles */
+        .form-container {
+            background-color: white; /* Modal background */
+            padding: 2rem;
+            border-radius: 0.5rem; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            width: 100%; /* Responsive width */
+            max-width: 400px; /* Max width */
+        }
+
+        /* Input and button styles */
+        .form-input {
+            width: 100%; /* Full width */
+            padding: 0.75rem; /* Padding */
+            margin-bottom: 1rem; /* Spacing */
+            border: 1px solid #ccc; /* Border color */
+            border-radius: 0.25rem; /* Rounded corners */
+        }
+
+        .submit-button {
+            width: 100%; /* Full width */
+            padding: 0.75rem; /* Padding */
+            background-color: #007BFF; /* Button color */
+            color: white; /* Text color */
+            border: none; /* No border */
+            border-radius: 0.25rem; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor */
+            transition: background-color 0.3s; /* Transition effect */
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .close-button {
+            margin-top: 1rem; /* Spacing above the button */
+            color: #007BFF; /* Text color */
+            cursor: pointer; /* Pointer cursor */
+            text-decoration: underline; /* Underline text */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img alt="ScholarSwap Logo"
+                src="logo.png"
+                width="100" height="200" />
+            <span>ScholarSwap</span>
+        </div>
+        <div>
+            <a href="FrontPage.html">Home</a>
+            <a href="Signup page.html">Sign Up</a>
+        </div>
+        <div class="right-links">
+            <a id="signin-button">Sign In</a>
+            <a class="contact-btn" href="#">Contact us <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="header-content">
+            <h1>Log In to Your ScholarSwap Account</h1>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="feature">
+            <i class="fas fa-lock"></i>
+            <h3>Secure Access</h3>
+            <p>Your data is protected with top-tier security measures.</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-tools"></i>
+            <h3>Efficient Management</h3>
+            <p>Manage your operations with ease and precision.</p>
+        </div>
+        
+    </div>
+
+    <div class="container">
+    
+        <div class="button-container">
+            <a id="login-button" class="button">LOG IN</a>
+        </div>
+    </div>
+
+    <div class="container2">
+        <h1>Need Help? Contact Us</h1>
+        <p>Our support team is here to assist you with any questions or issues you may have.</p>
+        <div class="info-section">
+            <div class="info-box">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <h3>Office Hours</h3>
+                    <p>Monday-Friday 8:00 am to 5:00 pm</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h3>Our Address</h3>
+                    <p>123 Eco St. Green City, 54321</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h3>Contact Us</h3>
+                    <p>+1-800-ECOGREEN +1-800-123456</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <div class="social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p>© 2024 EcoGreen. All rights reserved.</p>
+    </footer>
+
+    <!-- Sign In Modal -->
+    <div id="signin-overlay" class="overlay">
+        <div class="form-container">
+            <h2>Sign In</h2>
+            <form id="signin-form">
+                <input type="email" name="email" placeholder="Email" class="form-input" required />
+                <input type="password" name="password" placeholder="Password" class="form-input" required />
+                <button type="submit" class="submit-button">Sign In</button>
+            </form>
+            <span id="close-signin-button" class="close-button">Close</span>
+            <div class="mt-4 text-center">
+                <a href="#" class="text-blue-600 hover:underline">Forgot Password?</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Open Sign In Modal
+        document.getElementById('signin-button').addEventListener('click', function () {
+            document.getElementById('signin-overlay').style.display = 'flex'; // Show modal
+        });
+
+        // Open Sign In Modal from LOG IN button
+        document.getElementById('login-button').addEventListener('click', function () {
+            document.getElementById('signin-overlay').style.display = 'flex'; // Show modal
+        });
+
+        // Close Modal
+        document.getElementById('close-signin-button').addEventListener('click', function () {
+            document.getElementById('signin-overlay').style.display = 'none'; // Hide modal
+        });
+
+        // Handle Sign In Form Submission
+        document.getElementById('signin-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent page refresh
+            const formData = new FormData(this);
+            // Here you can add code to handle sign in (e.g., send data to your server)
+
+            // Close modal after submission
+            document.getElementById('signin-overlay').style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
+
+
+
+
+

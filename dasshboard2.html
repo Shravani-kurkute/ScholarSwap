@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ScholarSwap Dashboard</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+    .navbar {
+        width: 95%;
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background-color: white;
+    }
+    .navbar .logo {
+        display: flex;
+        align-items: center;
+    }
+    .navbar .logo img {
+        height: 60px;
+        margin-right: 10px;
+    }
+    .navbar .logo span {
+        font-size: 36px;
+        font-weight: 700;
+        color: black;
+    }
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+    }
+    .navbar ul li {
+        display: inline;
+    }
+    .navbar ul li a {
+        text-decoration: none;
+        color: black;
+        font-weight: 500;
+    }
+    .navbar .cta-buttons a {
+    text-decoration: none;
+    color: white;
+    background-color: #000000;
+    padding: 15px 18px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin: 5px;
+}
+    .navbar .cta-buttons a:hover {
+        background-color: #48007f;
+    }
+    .hero {
+        text-align: center;
+        padding: 100px 20px;
+        background: rgba(98, 0, 255, 0.788); 
+        color: white;
+    }
+    .hero h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+    .hero p {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 28px;
+        margin-bottom: 40px;
+        font-weight: bold;
+    }
+    .hero .cta-button {
+        text-decoration: none;
+        color: white;
+        background-color: #4caf50;
+        padding: 15px 30px;
+        border-radius: 5px;
+        font-weight: 500;
+    }
+    .hero .cta-button:hover {
+        background-color: #43a047;
+    }
+
+    .features {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding: 40px 20px;
+        background: rgba(46, 125, 50, 0.5); 
+        color: white;
+    }
+    .features div {
+        text-align: center;
+    }
+    .features div i {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    /* Add background image only for .hero and .features */
+    .hero, .features {
+        background: url('1.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .container {
+        text-align: center;
+        padding: 50px 20px;
+    }
+    .container h1 {
+        font-size: 2.5em;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+    }
+    .container p {
+        font-size: 1.2em;
+        color: #6c757d;
+        margin-bottom: 50px;
+    }
+    .features2 {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+    }
+    .feature {
+        max-width: 200px;
+    }
+    .feature i {
+        font-size: 2.5em;
+        color: #1a1a1a;
+        margin-bottom: 20px;
+    }
+    .feature h3 {
+        font-size: 1.2em;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+    }
+    .feature p {
+        font-size: 1em;
+        color: #6c757d;
+    }
+
+    .container2 {
+            padding: 50px 20px;
+        }
+        .title {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .achievements {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .achievement {
+            background-color: #e8f8e8;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+        }
+        .achievement h3 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin: 0;
+        }
+        .achievement p {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin: 5px 0 0;
+        }
+
+        .container3 {
+            text-align: center;
+            padding: 50px;
+        }
+        .title2 {
+            font-size: 36px;
+            color: #333;
+        }
+        .subtitle2 {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+          height: 250px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 200px;
+            text-align: left;
+            position: relative;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+        .card-content {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #010101;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .card-subtitle {
+            font-size: 14px;
+        }
+
+        .container4 {
+            display: flex;
+            background: rgba(46, 125, 50, 0.5); 
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 1200px;
+            width: 100%;
+            margin-left: auto; 
+            margin-right: auto;
+            text-align: center;
+        }
+        .image-section {
+            flex: 1;
+        }
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .content-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .content-section h1 {
+            font-size: 24px;
+            color: rgb(20, 71, 5);
+            margin: 0 0 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        .content-section h1 i {
+            margin-right: 10px;
+            color: #2d9c3c;
+        }
+        .content-section p {
+            font-size: 16px;
+            color: black;
+            margin: 0 0 20px 0;
+        }
+        .content-section .author {
+            font-size: 14px;
+            color: #124919;
+            font-weight: bold;
+        }
+
+        .container5 {
+        color: white;
+            /* max-width: 1200px; */
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to bottom, #c6f5ff, #58eeff);
+    margin: 0;         
+    padding: 0;        
+    box-sizing: border-box; 
+        }
+        .header {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .main-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .info {
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+        }
+        .contact-info div {
+            max-width: 200px;
+        }
+        .contact-info div p {
+            margin: 5px 0;
+        }
+        .contact-info div a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        /* Add background image only for .hero and .features */
+    .container5{
+        color: rgb(255, 255, 255);
+        background: url('2.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+        .footer {
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+        }
+        .footer-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .footer-nav li {
+            display: inline;
+        }
+        .footer-nav a {
+            text-decoration: none;
+            color:white;
+            font-size: 16px;
+        }
+        .social-icons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .social-icons a {
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 20px;
+        }
+        .footer-text {
+            text-align: center;
+            font-size: 14px;
+            color: white;
+        }
+
+        /* Section styles */
+.features-section {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+/* Grid layout */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Responsive layout for larger screens */
+@media (min-width: 768px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Card styles */
+.feature-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Icon styles */
+.feature-icon {
+    font-size: 4rem;
+    color: #2563EB; 
+    margin-bottom: 1rem;
+}
+
+/* Title and text styles */
+.feature-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin: 0;
+}
+
+/* Section styles */
+.testimonials-section {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+/* Grid layout */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Responsive layout for larger screens */
+@media (min-width: 768px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Card styles */
+.testimonial-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Testimonial text */
+.testimonial-text {
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+/* Author name styles */
+.testimonial-author {
+    font-weight: bold;
+}
+
+
+    /* Profile Dropdown Styles */
+    .profile-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .profile-icon {
+        font-size: 50px;
+        cursor: pointer;
+    }
+    .profile-dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        right: 0;
+        margin-top: 5px;
+        padding: 10px;
+        border-radius: 5px;
+        width: 270px;
+    }
+    .profile-dropdown-content a {
+        display: block;
+        color: black;
+        text-decoration: none;
+        padding: 8px 16px;
+    }
+    .profile-dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    span #profile-full-name{
+      color:brown
+    }
+    /* Recent Activity Section */
+    .recent-activity {
+      padding: 40px 20px;
+      background: rgb(0, 0, 0); 
+      color: white;
+    }
+    .recent-activity h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .activity-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .activity-item img {
+      width: 60px;
+      height: 60px;
+      border-radius: 5px;
+      margin-right: 15px;
+    }
+    .activity-item .details {
+      flex: 1;
+    }
+    .activity-item .details h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    .activity-item .details p {
+      font-size: 14px;
+      color: #ddd;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <img alt="ScholarSwap logo" height="50" src="logo.png" width="100"/>
+    </div> 
+    
+    <div class="cta-buttons">
+      <a href="review.html">Review<i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="profile-dropdown">
+      <i class="fas fa-user-circle profile-icon" onclick="toggleDropdown()"></i>
+      <div class="profile-dropdown-content">
+        <div id="profile-info">
+          <p><strong>Full Name:</strong> <span id="profile-full-name"></span></p>
+          <p><strong>Email:</strong> <span id="profile-email"></span></p>
+          <p><strong>Institution:</strong> <span id="profile-institution"></span></p>
+          <p><strong>Major:</strong> <span id="profile-major"></span></p>
+          <p><strong>Phone:</strong> <span id="profile-phone"></span></p>
+          <p><strong>User Type:</strong> <span id="profile-user-type"></span></p>
+        </div>
+        
+        <div class="cta-buttons">
+          <a href="#" onclick="showProfile()">My Profile</a>
+        <a href="#">Edit Profile</a>
+        <a href="#">Logout</a>
+         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero">
+    <p>Welcome To</p>
+    <p style="font-size: 50px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">ScholarSwap</p>
+    <h1>Student Exchange Platform</h1>
+    <p>Find the Tools You Need, Save Money</p>
+  </div>
+
+  <!-- <div class="features">
+   <div><i class="fas fa-leaf"></i><p>Eco-friendly Mining Practices</p></div>
+   <div><i class="fas fa-tools"></i><p>Innovative Technologies</p></div>
+   <div><i class="fas fa-globe"></i><p>Global Impact</p></div>
+  </div> -->
+
+<div class="container3">
+    <div class="title2">
+     Feature Provided At Platform
+    </div>
+    <div class="subtitle2">
+     Visual Stories Showcasing Our Commitment Towards Our Goal Fulfillment.
+     To Use Just Click And Enjoy
+    </div>
+    <div class="cards">
+
+          <div class="card">
+            <a href="buy.html"><img alt="Buy" height="300" src="buy icon.png" width="200"/></a>
+            <div class="card-content">
+             <div class="card-title">
+              <a href="buy.html" style="list-style: none; text-decoration: none;color: black;">Buy Tools</a>
+             </div>
+             <div class="card-subtitle">
+                Affordable
+             </div>
+            </div>
+           </div>
+
+     <div class="card">
+      <a href="sell.html"><img alt="sell" height="300" src="sell icon.png" width="200"/></a>
+      <div class="card-content">
+       <div class="card-title">
+        <a href="sell.html" style="list-style: none; text-decoration: none;color: black;">Sell Tools</a>
+       </div>
+       <div class="card-subtitle">
+        Financial
+       </div>
+      </div>
+     </div>
+
+     <div class="card">
+        <a href="pathways.html" style="list-style: none; text-decoration: none;color: black;">
+            <a href="exchange.html"><img alt="Data Visualization" height="300" src="exchange icon.png" width="200"/></a>
+        </a>
+      
+      <div class="card-content">
+        <div class="card-title"><a href="exchange.html" style="list-style: none; text-decoration: none;color: black;">
+         Exchange Tools</a>
+        </div>
+        <div class="card-subtitle">
+            Social
+        </div>
+       </div>
+     </div>
+
+
+     <div class="card">
+        <a href="donate.html" >
+          <img alt="Carbon Neutrality Pathways" height="300" src="donate icon.png" width="200"/>
+        </a>
+        <div class="card-content" style="font-weight: bold; color: black;">
+          <a href="donate.html" style="list-style: none; text-decoration: none;color: black;">Donate Tools</a>
+          <div class="card-subtitle">
+            Service
+          </div>
+        </div>
+      </div>
+      
+    
+      
+      
+     <div class="card">
+      <a href="rent.html"><img alt="Data Inights" height="300" src="rent icon.jpg" width="200"/></a>
+      <div class="card-content">
+       <div class="card-title">
+      <a href="rent.html"  style="list-style: none; text-decoration: none;color: black;">Rent Tool </a>
+       </div>
+       <div class="card-subtitle">
+        Protection
+       </div>
+      </div>
+     </div>
+    
+     <div class="card">
+      <a href="ChatBot.html"><img alt="Advance Technologies Used" height="300" src="ChatBot.png" width="200"/></a>
+      <div class="card-content">
+       <div class="card-title">
+       
+          CHATBOT
+       </div>
+       <div class="card-subtitle">
+        Cool
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+
+
+  <div class="recent-activity">
+    <h2>Your Recent Activity</h2>
+    <div class="activity-item">
+      <img src="buy icon.png" alt="Buy Icon">
+      <div class="details">
+        <h3>Bought a Calculus Textbook</h3>
+        <p>Purchased from John Doe on 2023-12-10</p>
+      </div>
+    </div>
+    <div class="activity-item">
+      <img src="sell icon.png" alt="Sell Icon">
+      <div class="details">
+        <h3>Sold a Physics Textbook</h3>
+        <p>Sold to Jane Smith on 2023-12-05</p>
+      </div>
+    </div>
+    <div class="activity-item">
+      <img src="exchange icon.png"Exchange Icon">
+      <div class="details">
+        <h3>Exchanged a Chemistry Textbook</h3>
+        <p>Exchanged with David Lee on 2023-12-01</p>
+      </div>
+    </div>
+    <div class="activity-item">
+      <img src="donate icon.png"Donate Icon">
+      <div class="details">
+        <h3>Donated a Biology Textbook</h3>
+        <p>Donated to the University Library on 2023-11-28</p>
+      </div>
+    </div>
+    <a href="history.html">More Deatils</a>
+  </div>
+
+   <section class="testimonials-section">
+    <h3 class="section-title">What Students Say</h3>
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <p class="testimonial-text">"ScholarSwap has been a game-changer for me. I've saved so much money on textbooks and made great connections!"</p>
+            <p class="testimonial-author">- Sarah J., University of Example</p>
+        </div>
+        <div class="testimonial-card">
+            <p class="testimonial-text">"I love how easy it is to find specialized equipment for my engineering projects. This platform is a lifesaver!"</p>
+            <p class="testimonial-author">- Michael T., Tech Institute</p>
+        </div>
+    </div>
+</section>
+
+   <div class="container5">
+    <div class="header">Get in Touch with EcoGreen</div>
+    <div class="main-title">Interested in Our Sustainable Solutions?</div>
+    <div class="info">
+        <p>Monday-Friday, 9:00 am to 6:00 pm</p>
+        <p>Our team is available to answer your queries and discuss potential partnerships.</p>
+    </div>
+    <div class="contact-info">
+        <div>
+            <div class="header">SEND US A MESSAGE</div>
+            <p>contact@ecogreen.com</p>
+        </div>
+        <div>
+            <div class="header">FOLLOW US</div>
+            <a href="#">LinkedIn</a>
+            <a href="#">Facebook</a>
+            <a href="#">YouTube</a>
+        </div>
+        <div>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <ul class="footer-nav">
+        <li><a href="#">About Us</a></li>
+        
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+    <div class="footer-text">
+        © 2024 EcoGreen. All Rights Reserved. Dedicated to sustainable coal mining.
+    </div>
+</div>
+
+  <script>
+    function toggleDropdown() {
+      var dropdownContent = document.querySelector('.profile-dropdown-content');
+      if (dropdownContent.style.display === 'block') {
+        dropdownContent.style.display = 'none';
+      } else {
+        dropdownContent.style.display = 'block';
+      }
+    }
+
+    function showProfile() {
+      var fullName = document.getElementById("profile-full-name");
+      var email = document.getElementById("profile-email");
+      var institution = document.getElementById("profile-institution");
+      var major = document.getElementById("profile-major");
+      var phone = document.getElementById("profile-phone");
+      var userType = document.getElementById("profile-user-type");
+
+      // Get the data from the URL query parameters
+      const queryParams = new URLSearchParams(window.location.search);
+      fullName.textContent = queryParams.get("fullName");
+      email.textContent = queryParams.get("email");
+      institution.textContent = queryParams.get("institution");
+      major.textContent = queryParams.get("major");
+      phone.textContent = queryParams.get("phone");
+      userType.textContent = queryParams.get("userType");
+    }
+
+    // Assuming you have a function called `checkLogin()` that handles
+    // authentication and redirects to the dashboard if successful
+    function checkLogin() {
+      // Get the email and password from the login form
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Replace this with your actual authentication logic
+      // Example: using local storage
+      const storedUsers = localStorage.getItem('users');
+      if (storedUsers) {
+        const users = JSON.parse(storedUsers);
+        const user = users.find(user => user.email === email && user.password === password);
+        if (user) {
+          window.location.href = 'dashboard.html?fullName=' + user.fullName + 
+                                    '&email=' + user.email + 
+                                    '&institution=' + user.institution +
+                                    '&major=' + user.major +
+                                    '&phone=' + user.phone +
+                                    '&userType=' + user.userType;
+        } else {
+          alert("Invalid email or password");
+        }
+      } else {
+        alert("No users registered yet");
+      }
+    }
+
+    // ... (rest of your JavaScript code) ...
+
+
+    const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors'); 
+const bcrypt = require('bcrypt'); // Add bcrypt for password hashing
+
+// Database Configuration 
+const dbURI = 'mongodb+srv://<your_username>:<your_password>@<your_cluster_name>.mongodb.net/<your_database_name>?retryWrites=true&w=majority'; 
+
+const app = express();
+const port = process.env.PORT || 5000;
+
+// Middleware
+app.use(bodyParser.json());
+app.use(cors());
+
+// Connect to MongoDB
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB Connection Error:', err));
+
+// User Model
+const userSchema = new mongoose.Schema({
+  fullName: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  institution: { type: String, required: true },
+  major: { type: String, required: true },
+  phone: { type: String, required: true },
+  userType: { type: String, required: true }
+});
+
+const User = mongoose.model('User', userSchema);
+
+// Signup Route
+app.post('/signup', async (req, res) => {
+  const { fullName, email, password, institution, major, phone, userType } = req.body;
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash password
+
+    const newUser = new User({
+      fullName,
+      email,
+      password: hashedPassword, // Store hashed password
+      institution,
+      major,
+      phone,
+      userType
+    });
+
+    await newUser.save();
+    res.status(201).json({ message: 'User registered successfully!' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Registration failed' });
+  }
+});
+
+// Login Route
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Compare Password 
+    const isMatch = await bcrypt.compare(password, user.password); // Compare with hashed password
+    if (isMatch) {
+      // Generate Authentication Token (replace with actual JWT or session logic)
+      const token = 'some-token'; // Replace with generated token
+      res.status(200).json({ 
+        token, 
+        message: 'Login successful',
+        fullName: user.fullName, 
+        email: user.email, 
+        institution: user.institution,
+        major: user.major,
+        phone: user.phone,
+        userType: user.userType 
+      });
+    } else {
+      res.status(401).json({ error: 'Invalid credentials' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Login failed' });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+  </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Purchase History</title>
+<style>
+body {
+     font-family: sans-serif; 
+    }
+table {
+     width: 80%; border-collapse: collapse; margin: 20px auto;
+     }
+th, td { 
+    border: 1px solid #ddd; padding: 8px; text-align: left;
+ }
+th {
+     background-color: #f2f2f2; 
+     }
+    
+     .navbar {
+        width: 95%;
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background-color: white;
+    }
+    .navbar .logo {
+        display: flex;
+        align-items: center;
+    }
+    .navbar .logo img {
+        height: 50px;
+        margin-right: 10px;
+    }
+    .navbar .logo span {
+        font-size: 24px;
+        font-weight: 700;
+        color: black;
+    }
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+    }
+    .navbar ul li {
+        display: inline;
+    }
+    .navbar ul li a {
+        text-decoration: none;
+        color: black;
+        font-weight: 500;
+    }
+</style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+          <img alt="ScholarSwap logo" height="50" src="logo.png" width="100"/>
+        </div> 
+        <ul>
+            <i class="fas fa-arrow-left"></i><a href="dasshboard2.html">Back</a>
+            <li><a href="#">Buy</a></li>
+            <li><a href="#">Sell</a></li>
+            <li><a href="#">Exchange</a></li>
+            <li><a href="#">Donate</a></li>
+            <li><a href="#">Rent</a></li>
+           </ul>
+    </div>
+    <br>
+    <br>
+    <br><br><br>
+<h1 style="justify-content: center;">Purchase History</h1>
+
+<table>
+  <tr>
+    <th>Order ID</th>
+    <th>Date</th>
+    <th>Item</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total</th>
+  </tr>
+  <tr>
+    <td>12345</td>
+    <td>2024-03-08</td>
+    <td>Calculus Textbook (Used)</td>
+    <td>35.00</td>
+    <td>1</td>
+    <td>35.00</td>
+  </tr>
+  <tr>
+    <td>67890</td>
+    <td>2024-03-15</td>
+    <td>Chemistry Lab Kit</td>
+    <td>75.00</td>
+    <td>1</td>
+    <td>75.00</td>
+  </tr>
+  <tr>
+    <td>13579</td>
+    <td>2024-03-22</td>
+    <td>Statistical Software License (1 year)</td>
+    <td>99.00</td>
+    <td>1</td>
+    <td>99.00</td>
+  </tr>
+  <tr>
+    <td>24680</td>
+    <td>2024-04-01</td>
+    <td>Graphing Calculator (Used)</td>
+    <td>25.00</td>
+    <td>1</td>
+    <td>25.00</td>
+  </tr>
+  <tr>
+    <td>11223</td>
+    <td>2024-04-10</td>
+    <td>Linear Algebra Textbook (New)</td>
+    <td>110.00</td>
+    <td>1</td>
+    <td>110.00</td>
+  </tr>
+
+</table>
+
+</body>
+</html>

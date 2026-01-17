@@ -1,0 +1,743 @@
+<html></html>
+<head>
+  <title>ScholarSwap</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+    body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        
+        /* Removed the global background image */
+    }
+    .navbar {
+        width: 95%;
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background-color: white;
+    }
+    .navbar .logo {
+        display: flex;
+        align-items: center;
+    }
+    .navbar .logo img {
+        height: 50px;
+        margin-right: 10px;
+    }
+    .navbar .logo span {
+        font-size: 24px;
+        font-weight: 700;
+        color: black;
+    }
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+    }
+    .navbar ul li {
+        display: inline;
+    }
+    .navbar ul li a {
+        text-decoration: none;
+        color: black;
+        font-weight: 500;
+    }
+    .navbar .cta-buttons a {
+        text-decoration: none;
+        color: white;
+        background-color: #47d7ff;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-weight: 500;
+    }
+    .navbar .cta-buttons a:hover {
+        background-color: #ab66ff;
+    }
+
+    /* Add background image only for .hero and .features
+    .hero, .features {
+        background: url('2.png') no-repeat center center fixed;
+        background-size: cover;
+    } */
+
+    .hero {
+        text-align: center;
+        padding: 100px 20px;
+        background: rgb(0, 255, 251); /* Semi-transparent overlay */
+        color: white;
+    }
+    .hero h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+    .hero p {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 28px;
+        margin-bottom: 40px;
+        font-weight: bold;
+    }
+    .hero .cta-button {
+        text-decoration: none;
+        color: white;
+        background-color: #4df9f9;
+        padding: 15px 30px;
+        border-radius: 5px;
+        font-weight: 500;
+    }
+    .hero .cta-button:hover {
+        background-color: #3700ff;
+    }
+
+    .features {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        padding: 40px 20px;
+        background: rgb(20, 169, 255); /* Semi-transparent green */
+        color: white;
+    }
+    .features div {
+        text-align: center;
+    }
+    .features div i {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    /* Add background image only for .hero and .features */
+    .hero, .features {
+        background: url('2.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .container {
+        text-align: center;
+        padding: 50px 20px;
+    }
+    .container h1 {
+        font-size: 2.5em;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+    }
+    .container p {
+        font-size: 1.2em;
+        color: #6c757d;
+        margin-bottom: 50px;
+    }
+    .features2 {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+    }
+    .feature {
+        max-width: 200px;
+    }
+    .feature i {
+        font-size: 2.5em;
+        color: #1a1a1a;
+        margin-bottom: 20px;
+    }
+    .feature h3 {
+        font-size: 1.2em;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+    }
+    .feature p {
+        font-size: 1em;
+        color: #6c757d;
+    }
+
+    .container2 {
+            padding: 50px 20px;
+        }
+        .title {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .achievements {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .achievement {
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+        }
+        .achievement h3 {
+            font-size: 24px;
+            color: #02d1ff;
+            margin: 0;
+        }
+        .achievement p {
+            font-size: 16px;
+            color: #1addeb;
+            margin: 5px 0 0;
+        }
+
+        .container3 {
+            text-align: center;
+            padding: 50px;
+        }
+        .title2 {
+            font-size: 36px;
+            color: #333;
+        }
+        .subtitle2 {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 200px;
+            text-align: left;
+            position: relative;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+        .card-content {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #010101;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .card-subtitle {
+            font-size: 14px;
+        }
+
+        .container4 {
+            display: flex;
+            background: rgb(0, 200, 255); /* Semi-transparent green */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 1200px;
+            width: 100%;
+            margin-left: auto; /* Center horizontally */
+            margin-right: auto;/* Center horizontally */
+            text-align: center;
+        }
+        .image-section {
+            flex: 1;
+        }
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .content-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .content-section h1 {
+            font-size: 24px;
+            color: rgb(20, 71, 5);
+            margin: 0 0 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        .content-section h1 i {
+            margin-right: 10px;
+            color: #17bdff;
+        }
+        .content-section p {
+            font-size: 16px;
+            color: black;
+            margin: 0 0 20px 0;
+        }
+        .content-section .author {
+            font-size: 14px;
+            color: #124919;
+            font-weight: bold;
+        }
+
+        .container5 {
+        color: white;
+            /* max-width: 1200px; */
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to bottom, #0b6623, #3cb371);
+    margin: 0;         /* Remove any margin */
+    padding: 0;        /* Remove any padding */
+    box-sizing: border-box; /* Ensure padding/border don't affect width */
+        }
+        .header {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .main-title {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .info {
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+        }
+        .contact-info div {
+            max-width: 200px;
+        }
+        .contact-info div p {
+            margin: 5px 0;
+        }
+        .contact-info div a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        /* Add background image only for .hero and .features */
+    .container5{
+        color: white;
+        background: url('1.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+        .footer {
+            background-color: black;
+            color: white;
+            padding: 20px 0;
+        }
+        .footer-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+        .footer-nav li {
+            display: inline;
+        }
+        .footer-nav a {
+            text-decoration: none;
+            color:white;
+            font-size: 16px;
+        }
+        .social-icons {
+            /* color: white;
+            background-color: black; */
+            text-align: center;
+            margin: 20px 0;
+        }
+        .social-icons a {
+            text-decoration: none;
+            /* color: #0519ff; */
+            margin: 0 10px;
+            font-size: 20px;
+        }
+        .footer-text {
+            /* background-color: black; */
+            text-align: center;
+            font-size: 14px;
+            color: white;
+        }
+
+        /* Section styles */
+.features-section {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+/* Grid layout */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Responsive layout for larger screens */
+@media (min-width: 768px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Card styles */
+.feature-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Icon styles */
+.feature-icon {
+    font-size: 4rem;
+    color: #2563EB; /* Blue color */
+    margin-bottom: 1rem;
+}
+
+/* Title and text styles */
+.feature-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin: 0;
+}
+
+/* Section styles */
+.testimonials-section {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+/* Grid layout */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* Responsive layout for larger screens */
+@media (min-width: 768px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Card styles */
+.testimonial-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Testimonial text */
+.testimonial-text {
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+/* Author name styles */
+.testimonial-author {
+    font-weight: bold;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+   <div class="logo" height="150">
+    <img alt="ScholarSwap logo" height="150" src="logo.png" width="100"/>
+    <!-- <span>StudySwap</span> -->
+   </div>
+   <ul>
+    <i class="fas fa-arrow-left"></i>
+    <li><a href="Landing Page.html">Back</a></li>
+    <li><a href="FrontPage.html">Home</a></li>
+    <li><a href="#">About Us</a></li>
+    
+   </ul>
+   <div class="cta-buttons">
+    <a href="LogIn Page.html">Login In <i class="fas fa-arrow-right"></i></a>
+    <a href="Signup page.html">Sign Up<i class="fas fa-arrow-right"></i></a>
+    <a href="contact.html">Contact us <i class="fas fa-arrow-right"></i></a>
+   </div>
+  </div>
+
+  <div class="hero">
+   <h1>Student Exchange Platform</h1>
+   <p>Find the Tools You Need, Save Money</p>
+   <button class="btn" style="background-color: #007bff;
+   color: white;
+   padding: 12px 30px;
+   font-size: 1.25rem;
+   border-radius: 50px;
+   border: none;
+   cursor: pointer;
+   transition: background-color 0.3s ease;" onclick="showSignUp()">Get Started</button>
+  </div>
+
+  <script>
+    function showSignUp() {
+      alert("Sign-up form coming soon!");  // You can replace this with your sign-up modal logic
+    }
+  </script>
+
+  <!-- <div class="features">
+   <div><i class="fas fa-leaf"></i><p>Eco-friendly Mining Practices</p></div>
+   <div><i class="fas fa-tools"></i><p>Innovative Technologies</p></div>
+   <div><i class="fas fa-globe"></i><p>Global Impact</p></div>
+  </div> -->
+
+  <div class="container">
+    <h1>How Platform Works</h1>
+    <!-- <p>Discover our cutting-edge technologies that make coal mining more sustainable and efficient.</p> -->
+    <div class="features2">
+        <div class="feature">
+            <i class="fas fa-user-plus"></i>
+            <h3>Sign Up</h3>
+            <p>Create your account</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-search"></i>
+            <h3>Search</h3>
+            <p>Find the tools you need</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-comments"></i>
+            <h3>Connect</h3>
+            <p>Message other students</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-handshake"></i> <!-- Changed icon class for better representation -->
+            <h3>Exchange</h3>
+            <p>Meet and exchange items</p>
+        </div>
+    </div>
+</div>
+
+  <div class="container2">
+    <div class="title">Platform's Achievements</div>
+    <div class="subtitle">Our Commitment Towards Each And Svery Student Should Educate Without Any Lack Of Things</div>
+    <div class="achievements">
+        <div class="achievement">
+            <h3>50+</h3>
+            <p>Local Spots</p>
+        </div>
+        <div class="achievement">
+            <h3>30,000+</h3>
+            <p>Students Already Enrolled</p>
+        </div>
+        <div class="achievement">
+            <h3>100+</h3>
+            <p>Successful Exchange Between Students</p>
+        </div>
+        <div class="achievement">
+            <h3>200+</h3>
+            <p>Supports</p>
+        </div>
+    </div>
+</div>
+
+<section class="features-section">
+    <h3 class="section-title">Our Features</h3>
+    <div class="features-grid">
+        <div class="feature-card">
+            <i class="fas fa-handshake feature-icon"></i>
+            <h4 class="feature-title">Peer-to-Peer Exchange</h4>
+            <p>Connect with other students to exchange learning materials</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-rupee-sign feature-icon"></i>
+            <h4 class="feature-title">Affordable Learning</h4>
+            <p>Save money on essential academic resources</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-users feature-icon"></i>
+            <h4 class="feature-title">Community Building</h4>
+            <p>Foster collaboration and knowledge sharing</p>
+        </div>
+    </div>
+</section>
+
+<div class="container3">
+    <div class="title2">
+     Feature Provided At Platform
+    </div>
+    <div class="subtitle2">
+     Visual Stories Showcasing Our Commitment Towards Our Goal Fulfillment.
+     To Use Just Click And Enjoy
+    </div>
+    <div class="cards">
+
+        <div class="card">
+          <a href="#"><img alt="Buy" height="300" src="buy icon.png" width="200"/></a>
+          <div class="card-content">
+           <div class="card-title">
+            <a href="#" style="list-style: none; text-decoration: none;color: black;">Buy Tools</a>
+           </div>
+           <div class="card-subtitle">
+              Affordable
+           </div>
+          </div>
+         </div>
+
+   <div class="card">
+    <a href="#"><img alt="sell" height="300" src="sell icon.png" width="200"/></a>
+    <div class="card-content">
+     <div class="card-title">
+      <a href="#" style="list-style: none; text-decoration: none;color: black;">Sell Tools</a>
+     </div>
+     <div class="card-subtitle">
+      Financial
+     </div>
+    </div>
+   </div>
+
+   <div class="card">
+      <a href="#" style="list-style: none; text-decoration: none;color: black;">
+          <a href="#"><img alt="Data Visualization" height="300" src="exchange icon.png" width="200"/></a>
+      </a>
+    
+    <div class="card-content">
+      <div class="card-title"><a href="#" style="list-style: none; text-decoration: none;color: black;">
+       Exchange Tools</a>
+      </div>
+      <div class="card-subtitle">
+          Social
+      </div>
+     </div>
+   </div>
+
+
+   <div class="card">
+      <a href="#" >
+        <img alt="Carbon Neutrality Pathways" height="300" src="donate icon.png" width="200"/>
+      </a>
+      <div class="card-content" style="font-weight: bold; color: black;">
+        <a href="#" style="list-style: none; text-decoration: none;color: black;">Donate Tools</a>
+        <div class="card-subtitle">
+          Service
+        </div>
+      </div>
+    </div>
+    
+  
+    
+    
+   <div class="card">
+    <a href="#"><img alt="Data Inights" height="300" src="rent icon.jpg" width="200"/></a>
+    <div class="card-content">
+     <div class="card-title">
+    <a href="#"  style="list-style: none; text-decoration: none;color: black;">Rent Tool </a>
+     </div>
+     <div class="card-subtitle">
+      Protection
+     </div>
+    </div>
+   </div>
+  
+   <div class="card">
+    <a href="#.html"><img alt="Advance Technologies Used" height="300" src="rewards icon.png" width="200"/></a>
+    <div class="card-content">
+     <div class="card-title">
+      REWARDS
+     </div>
+     <div class="card-subtitle">
+      Cool
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+
+
+
+                                  
+   
+
+   <section class="testimonials-section">
+    <h3 class="section-title">What Students Say</h3>
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <p class="testimonial-text">"StudySwap has been a game-changer for me. I've saved so much money on textbooks and made great connections!"</p>
+            <p class="testimonial-author">- Sarah J., University of Example</p>
+        </div>
+        <div class="testimonial-card">
+            <p class="testimonial-text">"I love how easy it is to find specialized equipment for my engineering projects. This platform is a lifesaver!"</p>
+            <p class="testimonial-author">- Michael T., Tech Institute</p>
+        </div>
+    </div>
+</section>
+
+   <div class="container5">
+    <div class="header">Get in Touch with EcoGreen</div>
+    <div class="main-title">Interested in Our Sustainable Solutions?</div>
+    <div class="info">
+        <p>Monday-Friday, 9:00 am to 6:00 pm</p>
+        <p>Our team is available to answer your queries and discuss potential partnerships.</p>
+    </div>
+    <div class="contact-info">
+        <div>
+            <div class="header">SEND US A MESSAGE</div>
+            <p>contact@ecogreen.com</p>
+        </div>
+        <div>
+            <div class="header">FOLLOW US</div>
+            <a href="#">LinkedIn</a>
+            <a href="#">Facebook</a>
+            <a href="#">YouTube</a>
+        </div>
+        <div>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <ul class="footer-nav">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+    </ul>
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+    <div class="footer-text">
+        © 2024 EcoGreen. All Rights Reserved. Dedicated to sustainable coal mining.
+    </div>
+</div>
+</body>
+</html>

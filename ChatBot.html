@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Chatbot</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Chatbot Container */
+    #chat-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 480px;
+      height: 100vh;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    /* Chat Log */
+    #chat-log {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background-color: #eef2f3;
+    }
+
+    #chat-log div {
+      margin-bottom: 15px;
+    }
+
+    .user-message {
+      text-align: right;
+      color: white;
+      background-color: #007bff;
+      padding: 10px 15px;
+      border-radius: 15px;
+      display: inline-block;
+      max-width: 70%;
+      word-wrap: break-word;
+    }
+
+    .ai-message {
+      text-align: left;
+      color: #333;
+      background-color: #e4e6eb;
+      padding: 10px 15px;
+      border-radius: 15px;
+      display: inline-block;
+      max-width: 70%;
+      word-wrap: break-word;
+    }
+
+    .error-message {
+      text-align: left;
+      color: red;
+      font-style: italic;
+    }
+
+    /* Input Area */
+    #input-area {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #ffffff;
+      border-top: 1px solid #ccc;
+    }
+
+    #user-input {
+      flex-grow: 1;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Mobile Responsiveness */
+    @media screen and (max-width: 480px) {
+      #chat-container {
+        border-radius: 0;
+      }
+
+      button {
+        padding: 10px;
+      }
+
+      #user-input {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+
+<div id="chat-container">
+  <nav>
+    <img src="ChatBot.png" alt="" style="height: 90px;">
+  </nav>
+  <!-- Chat Log -->
+  <div id="chat-log"></div>
+  
+  
+  <!-- Input Area -->
+  <div id="input-area">
+    <input id="user-input" type="text" placeholder="Ask me anything..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+  async function sendMessage() {
+    const userMessage = document.getElementById("user-input").value.trim();
+    if (!userMessage) {
+      alert("Please type a message.");
+      return;
+    }
+
+    const chatLog = document.getElementById("chat-log");
+    chatLog.innerHTML += `<div class="user-message">${userMessage}</div>`;
+    document.getElementById("user-input").value = "";
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/chatbot', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userMessage })
+      });
+
+      const data = await response.json();
+      if (data.error) {
+        chatLog.innerHTML += `<div class="error-message">Error: ${data.error}</div>`;
+      } else {
+        chatLog.innerHTML += `<div class="ai-message">${data.response}</div>`;
+      }
+    } catch (error) {
+      chatLog.innerHTML += `<div class="error-message">Error: Unable to contact the server.</div>`;
+    }
+
+    chatLog.scrollTop = chatLog.scrollHeight; // Scroll to the latest message
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScholarSwap Reviews</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      text-align: center;
+    }
+
+    .navbar {
+      width: 95%;
+      position: fixed;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .logo img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .navbar .logo span {
+      font-size: 24px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      display: inline;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .navbar .cta-buttons a {
+      text-decoration: none;
+      color: white;
+      background-color: #28a745; /* Green */
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .navbar .cta-buttons a:hover {
+      background-color: #218838; /* Darker green */
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(to bottom, #c6f5ff, #58eeff); /* Blue gradient */
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 28px;
+      margin-bottom: 40px;
+      font-weight: bold;
+    }
+
+    .hero .cta-button {
+      text-decoration: none;
+      color: white;
+      background-color: #4caf50; /* Green */
+      padding: 15px 30px;
+      border-radius: 5px;
+      font-weight: 500;
+    }
+
+    .hero .cta-button:hover {
+      background-color: #43a047; /* Darker green */
+    }
+
+    .reviews-container {
+      padding: 40px 20px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .reviews-header {
+      margin-bottom: 40px;
+    }
+
+    .reviews-header h2 {
+      font-size: 36px;
+      color: #28a745; /* Green */
+      margin-bottom: 10px;
+    }
+
+    .reviews-header p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .review {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .review .user-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .review .user-info img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .review .user-info .user-name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #28a745; /* Green */
+    }
+
+    .review .review-content {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .review-form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-form h3 {
+      color: #28a745; /* Green */
+      margin-bottom: 10px;
+    }
+
+    .questions {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .question label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .question input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    .question .rating-options {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .question .rating-options label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .question .rating-stars {
+      display: flex;
+      align-items: center;
+    }
+
+    .rating-stars i {
+      color: #ddd;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+
+    .rating-stars i.active {
+      color: #ffc107; /* Yellow */
+    }
+
+    .review-form button {
+      background-color: #28a745; /* Green */
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .review-form button:hover {
+      background-color: #218838; /* Darker green */
+    }
+
+    /* Responsive Design (for smaller screens) */
+    @media (max-width: 768px) {
+      .reviews-container {
+        padding: 20px;
+      }
+
+      .review {
+        margin-bottom: 15px;
+      }
+    }
+
+    .overall-rating {
+      font-size: 24px;
+      color: #28a745; /* Green */
+      margin-bottom: 20px;
+      display: none; /* Initially hidden */
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <img alt="ScholarSwap Logo" height="100" src="logo.png" width="100"/>
+      <span>ScholarSwap</span>
+    </div>
+    <ul>
+      <li><a href="dasshboard2.html">Home</a></li>
+    </ul>
+    <div class="cta-buttons">
+      <a href="contact.html">Contact us <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>What Students Are Saying</h1>
+    <p>Read reviews from our satisfied users.</p>
+  </div>
+
+  <div class="reviews-container">
+    <div class="reviews-header">
+      <h2>ScholarSwap Reviews</h2>
+      <p>See what other students think about our platform.</p>
+    </div>
+
+    <div class="overall-rating">
+      Overall Rating: <span id="average-rating">N/A</span> / 5
+    </div>
+
+    <div id="reviews">
+      <!-- Reviews will be loaded here -->
+    </div>
+
+    <div class="review-form">
+      <h2>Leave a Review</h2>
+      <form id="review-form">
+        <div>
+          <h3>How would you rate ScholarSwap based on the following?</h3>
+          <div class="questions">
+            <!-- Questions will be loaded here -->
+          </div>
+        </div>
+        <button type="submit">Submit Review</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Fetch reviews from backend
+    fetch('/reviews')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch reviews');
+        }
+        return response.json();
+      })
+      .then(reviews => {
+        displayReviews(reviews);
+        // Calculate and display average rating on initial load
+        calculateAverageRating(reviews);
+      })
+      .catch(error => {
+        console.error('Error fetching reviews:', error);
+        // Display an error message to the user
+      });
+
+    // Function to display reviews
+    function displayReviews(reviews) {
+      const reviewsContainer = document.getElementById('reviews');
+      reviewsContainer.innerHTML = ''; 
+
+      reviews.forEach(review => {
+        const reviewElement = document.createElement('div');
+        reviewElement.classList.add('review');
+
+        reviewElement.innerHTML = `
+          <div class="user-info">
+            <img src="user.png" alt="User Avatar">
+            <div class="user-name">${review.userName}</div>
+          </div>
+          <div class="review-content">
+            ${review.ratings.map(rating => `
+              <p><strong>${rating.question}:</strong> ${rating.rating} stars</p>
+            `).join('')}
+          </div>
+        `;
+
+        reviewsContainer.appendChild(reviewElement);
+      });
+    }
+
+    // Function to calculate and display the average rating
+    function calculateAverageRating(reviews) {
+      const averageRatingElement = document.getElementById('average-rating');
+      if (reviews.length === 0) {
+        averageRatingElement.textContent = 'N/A';
+        return;
+      }
+
+      let totalRating = 0;
+      let totalQuestions = 0;
+
+      reviews.forEach(review => {
+        totalRating += review.ratings.reduce((sum, rating) => sum + rating.rating, 0);
+        totalQuestions += review.ratings.length;
+      });
+
+      const averageRating = (totalRating / totalQuestions).toFixed(1); // Calculate average
+      const averageRatingOutOfFive = (averageRating / 5).toFixed(1); // Convert to out of 5
+      averageRatingElement.textContent = averageRatingOutOfFive; // Display out of 5
+    }
+
+    // Handle review submission
+    document.getElementById('review-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const formData = new FormData(event.target);
+      const ratings = [];
+
+      const questions = Array.from(document.querySelectorAll('.questions input'));
+      questions.forEach((question, index) => {
+        const questionElement = document.querySelector(`label[for="${question.id}"]`);
+        const rating = parseInt(question.value);
+
+        ratings.push({
+          question: questionElement.textContent,
+          rating: rating
+        });
+      });
+
+      const reviewData = {
+        userName: 'John Doe', // Get actual user name
+        ratings: ratings
+      };
+
+      // Send the review to the backend
+      fetch('/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reviewData)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to submit review');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        // Clear the form
+        event.target.reset();
+        // Fetch and display updated reviews
+        fetch('/reviews')
+          .then(response => response.json())
+          .then(reviews => {
+            displayReviews(reviews);
+            // Calculate and display average rating after submission
+            calculateAverageRating(reviews);
+          });
+      })
+      .catch(error => {
+        console.error('Error submitting review:', error);
+        // Display an error message to the user
+      });
+    });
+
+    // Function to dynamically add questions (you can use data from your backend)
+    function addQuestions() {
+      const questionsContainer = document.querySelector('.questions');
+      const questions = [
+        'Ease of Use',
+        'Quality of Services',
+        'Value for Money',
+        'Customer Support',
+        'Overall Satisfaction',
+        'Interface Design',
+        'Features Availability',
+        'Security',
+        'Responsiveness',
+        'Community Support'
+      ];
+
+      questions.forEach((question, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.classList.add('question');
+        questionElement.innerHTML = `
+          <label for="rating-${index}">${question}:</label>
+          <div class="rating-options">
+            <input type="radio" id="rating-${index}-1" name="rating-${index}" value="1" required>
+            <label for="rating-${index}-1">Very Dissatisfied</label>
+            <input type="radio" id="rating-${index}-2" name="rating-${index}" value="2" required>
+            <label for="rating-${index}-2">Dissatisfied</label>
+            <input type="radio" id="rating-${index}-3" name="rating-${index}" value="3" required>
+            <label for="rating-${index}-3">Neutral</label>
+            <input type="radio" id="rating-${index}-4" name="rating-${index}" value="4" required>
+            <label for="rating-${index}-4">Satisfied</label>
+            <input type="radio" id="rating-${index}-5" name="rating-${index}" value="5" required>
+            <label for="rating-${index}-5">Very Satisfied</label>
+          </div>
+          <hr>
+        `;
+
+        questionsContainer.appendChild(questionElement);
+      });
+    }
+
+    // Call the function to add questions when the page loads
+    addQuestions(); 
+  </script>
+</body>
+</html>
