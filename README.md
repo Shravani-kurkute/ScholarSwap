@@ -17,7 +17,7 @@ ScholarSwap simulates a **peer-to-peer student marketplace** where users can bro
 
 ## 🧠 Tech Stack
 - 🌐 Frontend: HTML, CSS, JavaScript  
-- 🐍 Backend: Python (Flask – if applicable)  
-- 📊 Analytics / Exploration: Jupyter Notebook (if applicable)
+- 🐍 Backend: Python 
+- 📊 Analytics / Exploration: Jupyter Notebook
 
 ---
